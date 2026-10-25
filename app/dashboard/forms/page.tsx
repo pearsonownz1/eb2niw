@@ -1,22 +1,27 @@
-import { WorkspaceHeader } from "@/components/workspace-header";
+import { DashboardHeader } from "@/components/dashboard-header";
+import { EmptyState } from "@/components/empty-state";
+import { workspaceIcons } from "@/components/workspace-icons";
+import { WorkspaceItems } from "@/components/workspace-items";
 
 const forms = ["Form I-140", "Supporting forms that travel with the I-140"] as const;
 
 export default function FormsPage() {
   return (
     <>
-      <WorkspaceHeader
-        title="Forms"
+      <DashboardHeader
+        sectionId="forms"
+        chip="Not published"
         lede="Form-filling assistance for the I-140 and supporting forms will live here. It is not published yet, and this page does not file anything."
       />
-      <ul className="grid gap-3 px-5 py-8 sm:px-8">
-        {forms.map((form) => (
-          <li key={form} className="rounded-2xl border border-line bg-raised px-5 py-4">
-            <p className="font-semibold text-near">{form}</p>
-            <p className="mt-1 text-sm text-muted">Not published yet</p>
-          </li>
-        ))}
-      </ul>
+      <div className="grid gap-6 px-5 py-8 sm:px-8">
+        <EmptyState
+          icon={workspaceIcons.forms}
+          accent="orange"
+          title="Forms are not open yet"
+          body="This page will help with the I-140 and the forms that travel with it. It does not file anything with USCIS."
+        />
+        <WorkspaceItems items={forms} note="Not published yet" accent="orange" />
+      </div>
     </>
   );
 }

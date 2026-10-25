@@ -9,8 +9,8 @@ export function DocumentUpload() {
   const [state, action, pending] = useActionState(uploadDocument, idle);
 
   return (
-    <form action={action} className="mt-6 rounded-2xl border border-dashed border-line bg-raised p-5">
-      <label className="block text-sm font-semibold text-near" htmlFor="petition-file">
+    <form action={action} className="rounded-3xl border border-dashed border-slate-300 bg-white p-5 shadow-sm">
+      <label className="block text-sm font-semibold text-slate-950" htmlFor="petition-file">
         Upload a file
         <input
           id="petition-file"
@@ -18,10 +18,10 @@ export function DocumentUpload() {
           type="file"
           required
           accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,application/pdf,image/png,image/jpeg"
-          className="mt-3 block w-full text-sm text-muted file:mr-4 file:rounded-full file:border file:border-line file:bg-paper file:px-4 file:py-2 file:text-sm file:font-semibold file:text-near"
+          className="mt-3 block w-full text-sm text-slate-600 file:mr-4 file:rounded-full file:border-0 file:bg-slate-100 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-900"
         />
       </label>
-      <p className="mt-3 text-sm text-muted">PDF, PNG, JPG, DOC, or DOCX. 10 MB maximum.</p>
+      <p className="mt-3 text-sm text-slate-600">PDF, PNG, JPG, DOC, or DOCX. 10 MB maximum.</p>
       {state.message ? (
         <p role={state.ok ? "status" : "alert"} className={`mt-3 text-sm font-semibold ${state.ok ? "text-good" : "text-danger"}`}>
           {state.message}
@@ -30,7 +30,7 @@ export function DocumentUpload() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-navy px-5 text-sm font-semibold text-paper disabled:cursor-wait disabled:opacity-70"
+        className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70"
       >
         {pending ? "Uploading" : "Upload"}
       </button>

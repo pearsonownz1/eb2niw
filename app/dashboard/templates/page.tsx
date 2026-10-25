@@ -1,4 +1,7 @@
-import { WorkspaceHeader } from "@/components/workspace-header";
+import { DashboardHeader } from "@/components/dashboard-header";
+import { EmptyState } from "@/components/empty-state";
+import { workspaceIcons } from "@/components/workspace-icons";
+import { WorkspaceItems } from "@/components/workspace-items";
 
 const items = [
   "Petition letter outline",
@@ -9,18 +12,20 @@ const items = [
 export default function TemplatesPage() {
   return (
     <>
-      <WorkspaceHeader
-        title="Templates"
+      <DashboardHeader
+        sectionId="templates"
+        chip="Not published"
         lede="Petition templates will live here. None are published yet, so there is nothing to download."
       />
-      <ul className="grid gap-3 px-5 py-8 sm:px-8">
-        {items.map((item) => (
-          <li key={item} className="rounded-2xl border border-line bg-raised px-5 py-4">
-            <p className="font-semibold text-near">{item}</p>
-            <p className="mt-1 text-sm text-muted">Not published yet</p>
-          </li>
-        ))}
-      </ul>
+      <div className="grid gap-6 px-5 py-8 sm:px-8">
+        <EmptyState
+          icon={workspaceIcons.templates}
+          accent="indigo"
+          title="Nothing to download yet"
+          body="Letter outlines, exhibit lists, and recommendation requests will show up here when they are published."
+        />
+        <WorkspaceItems items={items} note="Not published yet" accent="indigo" />
+      </div>
     </>
   );
 }
