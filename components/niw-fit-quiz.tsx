@@ -1,22 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import {
-  useActionState,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type KeyboardEvent,
-  type RefObject,
-} from "react";
-import { submitIntake } from "@/app/actions/intake";
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type RefObject } from "react";
 import { disclaimer } from "@/lib/content";
+import { persistEligibility } from "@/lib/eligibility-draft";
 import {
-  idleIntakeState,
-  intakeFields,
   quizSteps,
   recommendationCopy,
+  recommendPlan,
+  signupPlanFor,
   toQuizAnswers,
   type DraftAnswers,
   type MultiKey,
@@ -24,16 +16,17 @@ import {
   type QuizStep,
   type SingleKey,
 } from "@/lib/intake";
-
-const fieldClass =
-  "mt-1 w-full rounded-md border border-line bg-paper px-3 py-2.5 text-base text-ink";
+import { plans } from "@/lib/plans";
 
 const questionCount = quizSteps.length;
 
 type SingleStep = Extract<QuizStep, { kind: "single" }>;
 type MultiStep = Extract<QuizStep, { kind: "multi" }>;
 
-export function NiwFitQuiz() {
+const headingClass =
+  "quiz-heading mt-5 scroll-mt-24 font-serif text-3xl leading-tight text-balance text-navy outline-none sm:text-4xl";
+
+export function NiwFitQuiz({ variant = "card" }: { variant?: "card" | "page" }) {
   const [stepIndex, setStepIndex] = useState(0);
   const [answers, setAnswers] = useState<DraftAnswers>({});
   const [formGeneration, setFormGeneration] = useState(0);
@@ -52,6 +45,16 @@ export function NiwFitQuiz() {
     }
     headingRef.current?.focus();
   }, [stepIndex, formGeneration]);
+
+  useEffect(() => {
+    if (stepIndex < questionCount) {
+      return;
+    }
+    const ready = toQuizAnswers(answers);
+    if (ready) {
+      persistEligibility(ready);
+    }
+  }, [answers, stepIndex]);
 
   useEffect(() => {
     return () => {
@@ -131,8 +134,13 @@ export function NiwFitQuiz() {
     setFormGeneration((current) => current + 1);
   }
 
+  const shellClass =
+    variant === "page"
+      ? "quiz-page"
+      : "overflow-hidden rounded-2xl border border-line bg-raised shadow-[0_16px_40px_-28px_rgba(23,50,79,0.45)]";
+
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-raised shadow-[0_16px_40px_-28px_rgba(23,50,79,0.45)]">
+    <div className={shellClass}>
       <div
         className="h-1 bg-line"
         role="progressbar"
@@ -246,7 +254,7 @@ function SingleQuestion({
         ref={headingRef}
         id={titleId}
         tabIndex={-1}
-        className="mt-5 scroll-mt-24 font-serif text-3xl leading-tight text-balance text-navy outline-none sm:text-4xl"
+        className={headingClass}
       >
         {step.question}
       </h2>
@@ -318,7 +326,7 @@ function MultiQuestion({
         ref={headingRef}
         id={titleId}
         tabIndex={-1}
-        className="mt-5 scroll-mt-24 font-serif text-3xl leading-tight text-balance text-navy outline-none sm:text-4xl"
+        className={headingClass}
       >
         {step.question}
       </h2>
@@ -381,149 +389,49 @@ function ResultScreen({
   onBack: () => void;
   onRestart: () => void;
 }) {
-  const [state, action, pending] = useActionState(submitIntake, idleIntakeState);
-  const baseId = useId();
-  const statusId = useId();
   const copy = recommendationCopy(answers);
+  const plan = plans[signupPlanFor(recommendPlan(answers))];
 
   return (
     <div>
       <p className="inline-flex rounded-full bg-brass-soft px-3 py-1 text-xs font-semibold tracking-[0.14em] text-brass">
         RECOMMENDATION
       </p>
-      <h2
-        ref={headingRef}
-        id={titleId}
-        tabIndex={-1}
-        className="mt-5 scroll-mt-24 font-serif text-3xl leading-tight text-balance text-navy outline-none sm:text-4xl"
-      >
+      <h2 ref={headingRef} id={titleId} tabIndex={-1} className={headingClass}>
         {copy.title}
       </h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">{copy.body}</p>
+      <p className="mt-4 text-base leading-relaxed text-muted">{copy.body}</p>
       <p className="mt-4 text-sm leading-relaxed text-muted">{disclaimer}</p>
-
-      {state.status === "saved" ? (
-        <div className="mt-6">
-          <p id={statusId} role="status" className="text-sm font-semibold text-good">
-            {state.message}
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/pricing"
-              className="inline-flex items-center justify-center rounded-md bg-navy px-5 py-3 text-sm font-semibold text-paper"
-            >
-              Compare plans
-            </Link>
-          </div>
-          <button
-            type="button"
-            onClick={onRestart}
-            className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-navy underline decoration-brass underline-offset-4"
-          >
-            Answer again
-          </button>
-        </div>
-      ) : (
-        <form action={action} className="relative mt-8" aria-busy={pending}>
-          <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
-            <label>
-              Company
-              <input type="text" name="company" tabIndex={-1} autoComplete="off" />
-            </label>
-          </div>
-          {intakeFields(answers).map((field) => (
-            <input key={`${field.name}-${field.value}`} type="hidden" name={field.name} value={field.value} />
-          ))}
-          <h3 className="font-serif text-2xl text-navy">Save this recommendation</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
-            Your answers stay on this page until you send them.
-          </p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <label className="block text-sm font-semibold text-navy" htmlFor={`${baseId}-first`}>
-              First name
-              <input
-                id={`${baseId}-first`}
-                name="first_name"
-                type="text"
-                autoComplete="given-name"
-                required
-                maxLength={80}
-                className={fieldClass}
-              />
-            </label>
-            <label className="block text-sm font-semibold text-navy" htmlFor={`${baseId}-last`}>
-              Last name
-              <input
-                id={`${baseId}-last`}
-                name="last_name"
-                type="text"
-                autoComplete="family-name"
-                required
-                maxLength={80}
-                className={fieldClass}
-              />
-            </label>
-          </div>
-          <div className="mt-4 grid gap-4">
-            <label className="block text-sm font-semibold text-navy" htmlFor={`${baseId}-email`}>
-              Email
-              <input
-                id={`${baseId}-email`}
-                name="email"
-                type="email"
-                inputMode="email"
-                autoComplete="email"
-                required
-                maxLength={320}
-                placeholder="you@example.com"
-                aria-invalid={state.status === "error"}
-                aria-describedby={state.message ? statusId : undefined}
-                className={fieldClass}
-              />
-            </label>
-            <label className="block text-sm font-semibold text-navy" htmlFor={`${baseId}-phone`}>
-              Phone <span className="font-normal text-muted">(optional)</span>
-              <input
-                id={`${baseId}-phone`}
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                maxLength={40}
-                className={fieldClass}
-              />
-            </label>
-          </div>
-          <label className="mt-4 flex items-start gap-3 text-sm leading-relaxed text-ink">
-            <input
-              type="checkbox"
-              name="marketing_consent"
-              value="yes"
-              className="mt-1 h-4 w-4 shrink-0 accent-navy"
-            />
-            <span>Email me when the guided petition software opens.</span>
-          </label>
-          {state.message ? (
-            <p id={statusId} role="alert" className="mt-4 text-sm font-semibold text-danger">
-              {state.message}
-            </p>
-          ) : null}
-          <button
-            type="submit"
-            disabled={pending}
-            className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-navy px-5 py-3 text-sm font-semibold text-paper disabled:cursor-wait disabled:opacity-70"
-          >
-            {pending ? "Saving" : "Save my recommendation"}
-          </button>
-          <button
-            type="button"
-            onClick={onBack}
-            className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-navy"
-          >
-            Back
-          </button>
-        </form>
-      )}
+      <div className="mt-8 rounded-2xl border border-line bg-paper p-5">
+        <p className="text-xs font-semibold tracking-[0.14em] text-brass">SUGGESTED PLAN</p>
+        <p className="mt-2 font-serif text-3xl text-near">
+          {plan.name}
+          {plan.badge ? <span className="ml-2 align-middle text-base font-sans font-semibold text-brass">{plan.badge}</span> : null}
+        </p>
+        <p className="mt-1 text-sm text-muted">{plan.priceLabel} · placeholder price</p>
+      </div>
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <Link
+          href={`/signup?plan=${plan.id}`}
+          className="inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold text-near"
+        >
+          Continue with {plan.name}
+        </Link>
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex min-h-11 items-center text-sm font-semibold text-navy"
+        >
+          Back
+        </button>
+      </div>
+      <button
+        type="button"
+        onClick={onRestart}
+        className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-navy underline decoration-brass underline-offset-4"
+      >
+        Answer again
+      </button>
     </div>
   );
 }

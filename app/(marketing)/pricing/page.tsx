@@ -5,7 +5,7 @@ import { comparison, steps } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Two EB2NIW plans: DIY, and DIY plus review by an independent immigration attorney. Prices are TBD.",
+    "Two EB2NIW plans: DIY at $XXX, and DIY plus attorney review at $X,XXX. Prices are placeholders.",
 };
 
 export default function PricingPage() {
@@ -17,7 +17,7 @@ export default function PricingPage() {
           DIY, or DIY with an independent attorney
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          Both plans are the same guided software. The second plan adds review of your package by an independent licensed immigration attorney before you file. Prices are not set.
+          Both plans are the same guided software. The second plan adds review of your package by an independent licensed immigration attorney before you file. Prices below are placeholders.
         </p>
       </header>
 
@@ -25,8 +25,8 @@ export default function PricingPage() {
         <section className="rounded-2xl border border-line bg-raised p-6">
           <h2 className="font-serif text-3xl text-navy">DIY</h2>
           <p className="mt-2 text-sm text-muted">Full self-service through the guided software.</p>
-          <p className="mt-6 font-serif text-5xl text-navy">TBD</p>
-          <p className="mt-2 text-sm text-muted">Price not published.</p>
+          <p className="mt-6 font-serif text-5xl text-navy">$XXX</p>
+          <p className="mt-2 text-sm text-muted">Placeholder price.</p>
         </section>
         <section className="rounded-2xl border border-navy bg-navy p-6 text-paper">
           <p className="text-xs font-semibold tracking-wide text-brass-soft">Attorney Review</p>
@@ -34,8 +34,8 @@ export default function PricingPage() {
           <p className="mt-2 text-sm text-paper/80">
             The same software, plus review by an independent licensed immigration attorney.
           </p>
-          <p className="mt-6 font-serif text-5xl">TBD</p>
-          <p className="mt-2 text-sm text-paper/70">Price not published.</p>
+          <p className="mt-6 font-serif text-5xl">$X,XXX</p>
+          <p className="mt-2 text-sm text-paper/70">Placeholder price. Premium.</p>
         </section>
       </div>
 
@@ -57,7 +57,7 @@ export default function PricingPage() {
         <div className="mt-8 overflow-x-auto rounded-xl border border-line">
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
             <caption className="sr-only">
-              DIY compared with DIY plus attorney review. Prices are TBD.
+              DIY compared with DIY plus attorney review. Prices are placeholders.
             </caption>
             <thead className="bg-raised text-navy">
               <tr>
@@ -89,10 +89,10 @@ export default function PricingPage() {
 
       <p className="mt-10">
         <Link
-          href="/start"
-          className="inline-flex items-center justify-center rounded-md bg-navy px-5 py-3 text-sm font-semibold text-paper"
+          href="/get-started"
+          className="inline-flex items-center justify-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-near"
         >
-          Start your petition
+          Get started
         </Link>
       </p>
     </article>

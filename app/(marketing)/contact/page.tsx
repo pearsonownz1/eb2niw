@@ -4,7 +4,7 @@ import { PageIntro } from "@/components/page-intro";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "EB2NIW does not publish a contact address yet. The fit check is on Start your petition.",
+  description: "EB2NIW does not publish a contact address yet. The eligibility check is a short questionnaire.",
 };
 
 export default function ContactPage() {
@@ -17,10 +17,10 @@ export default function ContactPage() {
       />
       <p className="mt-8">
         <Link
-          href="/start"
+          href="/eligibility"
           className="font-semibold text-navy underline decoration-brass underline-offset-4"
         >
-          Check your NIW fit
+          Check your eligibility
         </Link>
       </p>
     </article>

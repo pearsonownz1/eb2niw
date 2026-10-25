@@ -355,6 +355,10 @@ export function readIntake(formData: FormData):
   };
 }
 
+export function signupPlanFor(plan: PlanSuggestion): "diy" | "attorney_review" {
+  return plan === "diy" ? "diy" : "attorney_review";
+}
+
 export function savedIntakeMessage(marketingConsent: boolean): string {
   if (marketingConsent) {
     return "Saved. We will email you when the guided software opens.";

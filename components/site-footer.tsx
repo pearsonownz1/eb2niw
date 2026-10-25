@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div>
           <p className="font-serif text-2xl">{brand}</p>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-paper/80">
-            Guided software for people preparing their own EB‑2 National Interest Waiver petition. Two plans. The full flow is not open yet.
+            Guided software for people preparing their own EB‑2 National Interest Waiver petition. Two plans. Prices are placeholders, and payment is not open yet.
           </p>
           <p className="mt-4 text-xs leading-relaxed text-paper/70">
             Photos:{" "}
@@ -38,8 +38,11 @@ export function SiteFooter() {
               {item.label}
             </Link>
           ))}
-          <Link href="/start" className="rounded-sm py-1 text-paper/90 hover:text-paper">
-            Start your petition
+          <Link href="/eligibility" className="rounded-sm py-1 text-paper/90 hover:text-paper">
+            Check your eligibility
+          </Link>
+          <Link href="/get-started" className="rounded-sm py-1 text-paper/90 hover:text-paper">
+            Get started
           </Link>
           <Link href="/contact" className="rounded-sm py-1 text-paper/90 hover:text-paper">
             Contact

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Newsreader, Source_Sans_3 } from "next/font/google";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -27,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EB2NIW",
     description:
-      "Guided software for an EB‑2 National Interest Waiver petition. Two plans, prices TBD.",
+      "Guided software for an EB‑2 National Interest Waiver petition. Two plans, prices are placeholders.",
     url: "https://eb2niw.com",
     siteName: "EB2NIW",
     type: "website",
@@ -47,11 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

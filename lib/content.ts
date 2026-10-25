@@ -1,5 +1,10 @@
 export const brand = "EB2NIW";
 
+/** Non-breaking hyphen so "EB-2" cannot split after EB-. */
+export const eb2 = "EB\u20112";
+/** "EB-2 NIW" kept on one line. */
+export const eb2niw = "EB\u20112\u00A0NIW";
+
 export const disclaimer =
   "EB2NIW is not a law firm, and attorney review is provided by independent attorneys.";
 
@@ -98,7 +103,7 @@ export const comparison = [
     review: "Included",
   },
   { feature: "Attorney Q&A", diy: "Not included", review: "Included" },
-  { feature: "Price", diy: "TBD", review: "TBD" },
+  { feature: "Price", diy: "$XXX", review: "$X,XXX" },
 ] as const;
 
 export const faqs = [
@@ -130,7 +135,7 @@ export const faqs = [
   {
     question: "Can I start a petition today?",
     answer:
-      "The guided software is not open yet. The fit check on the home page and on Start your petition suggests a plan, then asks for your name if you want the result saved. Prices are still TBD.",
+      "Check your eligibility, then choose DIY or DIY + Attorney Review and create an account. Payment is not open yet. The prices on the plans page are placeholders.",
   },
 ] as const;
 
