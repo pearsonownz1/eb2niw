@@ -46,11 +46,11 @@ export async function submitIntake(
       marketing_consent: parsed.marketingConsent,
       degree: parsed.answers.degree,
       years_experience: parsed.answers.years,
-      compensation: parsed.answers.compensation,
-      role_level: parsed.answers.role,
-      profile_signals: parsed.answers.signals,
-      current_status: parsed.answers.status,
-      writing_comfort: parsed.answers.writing,
+      progressive_experience: parsed.answers.progressive,
+      exceptional_criteria: parsed.answers.criteria,
+      prong_merit: parsed.answers.merit,
+      prong_positioned: parsed.answers.positioned,
+      prong_balance: parsed.answers.balance,
       plan_suggestion: parsed.plan,
     });
 

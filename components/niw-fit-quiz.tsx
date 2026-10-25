@@ -100,7 +100,7 @@ export function NiwFitQuiz({ variant = "card" }: { variant?: "card" | "page" }) 
         ? exclusive.options.map((option) => option.value as string)
         : next;
       next = order.filter((item) => next.includes(item));
-      return { ...current, [key]: next };
+      return { ...current, [key]: next } as DraftAnswers;
     });
   }
 
@@ -253,7 +253,7 @@ function SingleQuestion({
   return (
     <div>
       <p className="inline-flex rounded-full bg-brass-soft px-3 py-1 text-xs font-semibold tracking-[0.14em] text-brass">
-        CHECK YOUR NIW FIT
+        {step.section}
       </p>
       <h2
         ref={headingRef}
@@ -325,7 +325,7 @@ function MultiQuestion({
   return (
     <div>
       <p className="inline-flex rounded-full bg-brass-soft px-3 py-1 text-xs font-semibold tracking-[0.14em] text-brass">
-        CHECK YOUR NIW FIT
+        {step.section}
       </p>
       <h2
         ref={headingRef}

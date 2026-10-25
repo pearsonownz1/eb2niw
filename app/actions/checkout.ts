@@ -51,11 +51,11 @@ export async function recordPendingPlan(
         user_id: user.id,
         degree: draft.answers.degree,
         years_experience: draft.answers.years,
-        compensation: draft.answers.compensation,
-        role_level: draft.answers.role,
-        profile_signals: draft.answers.signals,
-        current_status: draft.answers.status,
-        writing_comfort: draft.answers.writing,
+        progressive_experience: draft.answers.progressive,
+        exceptional_criteria: draft.answers.criteria,
+        prong_merit: draft.answers.merit,
+        prong_positioned: draft.answers.positioned,
+        prong_balance: draft.answers.balance,
         plan_suggestion: draft.suggestion,
       });
       if (eligibilityError) {

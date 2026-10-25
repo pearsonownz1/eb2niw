@@ -2,17 +2,19 @@ export const quizSteps = [
   {
     key: "degree",
     kind: "single",
+    section: "ADVANCED DEGREE",
     question: "What is your highest completed degree?",
     options: [
-      { value: "bachelor", label: "Bachelor's degree" },
-      { value: "master", label: "Master's degree" },
-      { value: "phd", label: "PhD or another doctorate" },
+      { value: "bachelor", label: "Bachelor's degree, from the U.S. or a foreign equivalent" },
+      { value: "master", label: "U.S. master's degree, or a foreign equivalent" },
+      { value: "phd", label: "U.S. doctorate, or another degree above a master's, or a foreign equivalent" },
       { value: "other", label: "Another credential, or none yet" },
     ],
   },
   {
     key: "years",
     kind: "single",
+    section: "ADVANCED DEGREE",
     question: "How many years of experience do you have in your field?",
     options: [
       { value: "under_2", label: "Less than 2 years" },
@@ -22,71 +24,64 @@ export const quizSteps = [
     ],
   },
   {
-    key: "compensation",
+    key: "progressive",
     kind: "single",
-    question: "What is your current annual compensation?",
+    section: "ADVANCED DEGREE",
+    question: "Were at least 5 years of that work progressive, and after your bachelor's degree?",
     options: [
-      { value: "under_80", label: "Under $80,000" },
-      { value: "80_120", label: "$80,000 to $120,000" },
-      { value: "120_200", label: "$120,000 to $200,000" },
-      { value: "200_plus", label: "$200,000 or more" },
+      { value: "yes", label: "Yes. At least 5 years came after the degree and grew in responsibility in the specialty" },
+      { value: "no", label: "No, or not 5 years after the degree" },
+      { value: "not_applicable", label: "Not applicable. My highest degree is already above a bachelor's" },
     ],
   },
   {
-    key: "role",
-    kind: "single",
-    question: "Which best describes your role?",
-    options: [
-      { value: "entry", label: "Early career" },
-      { value: "mid", label: "Mid-level" },
-      { value: "senior", label: "Senior or lead" },
-      { value: "principal", label: "Principal, director, or executive" },
-    ],
-  },
-  {
-    key: "signals",
+    key: "criteria",
     kind: "multi",
-    question: "Which of these describe your record?",
-    hint: "Select every one that applies.",
+    section: "EXCEPTIONAL ABILITY",
+    question: "Which exceptional-ability criteria can you document?",
+    hint: "Select every one that applies. At least three is the usual threshold.",
     exclusive: "none",
     options: [
-      { value: "critical_role", label: "A critical role at an organization" },
-      { value: "high_salary", label: "Pay that is high compared with peers" },
-      { value: "original", label: "Original work, such as patents, inventions, or research" },
-      { value: "authorship", label: "Publications or other authorship" },
-      { value: "media", label: "Media coverage of the work" },
-      { value: "judging", label: "Judging other people's work" },
-      { value: "awards", label: "Awards for the work" },
-      { value: "memberships", label: "Memberships that select their members" },
-      { value: "commercial", label: "Commercial or business impact" },
-      { value: "presentations", label: "Talks, exhibitions, or other public presentations" },
+      { value: "academic_record", label: "An official academic record of a degree, diploma, or certificate in your field" },
+      { value: "ten_year_letters", label: "Employer letters showing at least 10 years of full-time experience in the occupation" },
+      { value: "license", label: "A license or certification for your profession" },
+      { value: "salary", label: "Pay or other compensation that shows a high level of ability" },
+      { value: "membership", label: "Membership in a professional association" },
+      { value: "recognition", label: "Recognition of your achievements by peers, a government, or a professional or business organization" },
       { value: "none", label: "None of these" },
     ],
   },
   {
-    key: "status",
-    kind: "multi",
-    question: "What is your current status?",
-    hint: "Select every one that applies.",
-    exclusive: null,
+    key: "merit",
+    kind: "single",
+    section: "NATIONAL INTEREST WAIVER",
+    question: "Does the endeavor you propose have substantial merit and national importance?",
     options: [
-      { value: "f1", label: "F-1 student" },
-      { value: "h1b", label: "H-1B" },
-      { value: "opt", label: "OPT or STEM OPT" },
-      { value: "i485", label: "I-485 pending" },
-      { value: "prior_denial", label: "A prior petition was denied" },
-      { value: "outside_us", label: "I am outside the United States" },
-      { value: "other", label: "Something else" },
+      { value: "yes", label: "Yes. It matters beyond one employer, such as for a field, a region, or the public" },
+      { value: "partly", label: "Partly. The broader importance is still unclear" },
+      { value: "not_yet", label: "Not yet" },
     ],
   },
   {
-    key: "writing",
+    key: "positioned",
     kind: "single",
-    question: "How do you want to write the petition?",
+    section: "NATIONAL INTEREST WAIVER",
+    question: "Are you well positioned to advance that endeavor?",
     options: [
-      { value: "confident", label: "I am confident drafting it myself" },
-      { value: "guidance", label: "I can draft it, and I want guidance" },
-      { value: "lawyer_check", label: "I want a lawyer to check the draft" },
+      { value: "yes", label: "Yes. My education, record, and plan line up with the endeavor" },
+      { value: "partly", label: "Partly. Some of that record is still thin" },
+      { value: "not_yet", label: "Not yet" },
+    ],
+  },
+  {
+    key: "balance",
+    kind: "single",
+    section: "NATIONAL INTEREST WAIVER",
+    question: "On balance, would it benefit the United States to waive the job offer and labor certification?",
+    options: [
+      { value: "yes", label: "Yes. A job offer would be impractical, or the work would help even if other workers are available" },
+      { value: "partly", label: "Partly. That balance is still unclear" },
+      { value: "not_yet", label: "Not yet" },
     ],
   },
 ] as const;
@@ -115,11 +110,11 @@ export type DraftAnswers = {
 export const answerFieldNames: Record<QuizStepKey, string> = {
   degree: "degree",
   years: "years_experience",
-  compensation: "compensation",
-  role: "role_level",
-  signals: "profile_signals",
-  status: "current_status",
-  writing: "writing_comfort",
+  progressive: "progressive_experience",
+  criteria: "exceptional_criteria",
+  merit: "prong_merit",
+  positioned: "prong_positioned",
+  balance: "prong_balance",
 };
 
 export type PlanSuggestion = "diy" | "attorney_review" | "stretch";
@@ -171,43 +166,37 @@ function readMulti<K extends MultiKey>(key: K, values: readonly string[]): QuizA
   return ordered as QuizAnswers[K];
 }
 
+function categoryBasis(answers: QuizAnswers): { advanced: boolean; exceptional: boolean } {
+  const fiveYears = answers.years === "five_to_nine" || answers.years === "ten_plus";
+  const advanced =
+    answers.degree === "master" ||
+    answers.degree === "phd" ||
+    (answers.degree === "bachelor" && fiveYears && answers.progressive === "yes");
+  const criteriaCount = answers.criteria.includes("none") ? 0 : answers.criteria.length;
+  return { advanced, exceptional: criteriaCount >= 3 };
+}
+
+function waiverProngsReady(answers: QuizAnswers): boolean {
+  return answers.merit === "yes" && answers.positioned === "yes" && answers.balance === "yes";
+}
+
 /**
- * Suggests a product plan from the seven answers. The petition path is EB-2 NIW.
- * Profile signals carry the result. Zero or one signal is a stretch, even
- * with a doctorate, because the useful next step is an independent attorney.
- * Three or more signals are strong. Two signals are strong only when degree,
- * years, pay, and role add up. A bachelor's degree plus 5 or more years is
- * treated like a master's for that structure score, the usual advanced-degree
- * equivalent. It is still a product suggestion, not a finding that the person
- * qualifies. Strong signals plus confidence and no prior denial suggest DIY.
- * Anything else with enough signals suggests DIY + Attorney Review.
+ * Suggests a product plan from the EB-2 rules. An advanced degree is a U.S.
+ * master's or higher, or a foreign equivalent, or a bachelor's plus at least
+ * 5 years of progressive post-degree experience. Exceptional ability is at
+ * least three of the six criteria. The waiver also needs yes on all three
+ * Dhanasar prongs. Missing the degree and the three criteria is a stretch.
+ * A category basis without all three prongs suggests attorney review. A basis
+ * plus all three prongs suggests DIY. This is not a finding that anyone qualifies.
  */
 export function recommendPlan(answers: QuizAnswers): PlanSuggestion {
-  const count = answers.signals.includes("none") ? 0 : answers.signals.length;
-  if (count <= 1) {
+  const basis = categoryBasis(answers);
+  if (!basis.advanced && !basis.exceptional) {
     return "stretch";
   }
-
-  const advancedEquivalent =
-    answers.degree === "bachelor" &&
-    (answers.years === "five_to_nine" || answers.years === "ten_plus");
-
-  let structure = 0;
-  if (answers.degree === "phd") structure += 2;
-  else if (answers.degree === "master" || advancedEquivalent) structure += 1;
-  if (answers.years === "ten_plus") structure += 2;
-  else if (answers.years === "five_to_nine") structure += 1;
-  if (answers.compensation === "200_plus") structure += 2;
-  else if (answers.compensation === "120_200") structure += 1;
-  if (answers.role === "principal") structure += 2;
-  else if (answers.role === "senior") structure += 1;
-
-  const strong = count >= 3 || structure >= 3;
-  const priorDenial = answers.status.includes("prior_denial");
-  if (strong && answers.writing === "confident" && !priorDenial) {
+  if (waiverProngsReady(answers)) {
     return "diy";
   }
-
   return "attorney_review";
 }
 
@@ -215,50 +204,57 @@ export function recommendationCopy(answers: QuizAnswers): { title: string; body:
   const plan = recommendPlan(answers);
 
   if (plan === "diy") {
+    const basis = categoryBasis(answers);
+    const basisText =
+      basis.advanced && basis.exceptional
+        ? "an advanced degree and at least three exceptional-ability criteria"
+        : basis.advanced
+          ? "an advanced degree (a master's or higher, or a bachelor's plus 5 years of progressive post-degree experience)"
+          : "at least three exceptional-ability criteria";
     return {
       title: recommendationTitles.diy,
-      body: "DIY is the plan to start with. You would use the questionnaire, the evidence checklist, the petition letter builder for the three Dhanasar prongs, the recommendation letter kit, and a filing-ready package. Attorney review can be added later. This is a suggestion about which product to use. It is not a finding that you qualify for an NIW.",
+      body: `These answers line up with ${basisText}, and with yes on all three national-interest prongs. DIY is the plan to start with. You would use the questionnaire, the evidence checklist, and the petition letter builder. This is a suggestion about which product to use. It is not a finding that you qualify.`,
     };
   }
 
   if (plan === "attorney_review") {
     return {
       title: recommendationTitles.attorney_review,
-      body: "DIY + Attorney Review is the plan to start with. You would use the same guided software, then have an independent licensed immigration attorney review the full package and answer questions about the draft. This is a suggestion about which product to use. It is not a finding that you qualify for an NIW.",
+      body: "These answers line up with an advanced degree or with at least three exceptional-ability criteria. At least one national-interest prong is only partly answered, or not yet. DIY + Attorney Review is the plan to start with. This is a suggestion about which product to use. It is not a finding that you qualify.",
     };
   }
 
   return {
     title: recommendationTitles.stretch,
-    body: "These answers show few documented profile signals. An independent immigration attorney can tell you whether an EB‑2 NIW is worth preparing. EB2NIW does not make that call. This is not legal advice.",
+    body: "These answers do not line up with a master's or higher, a bachelor's plus 5 years of progressive post-degree experience, or at least three exceptional-ability criteria. An independent immigration attorney can tell you whether an EB\u20112\u00A0NIW is worth preparing. EB2NIW does not make that call. This is not legal advice.",
   };
 }
 
 export function toQuizAnswers(input: DraftAnswers): QuizAnswers | null {
   const degree = readSingle("degree", input.degree);
   const years = readSingle("years", input.years);
-  const compensation = readSingle("compensation", input.compensation);
-  const role = readSingle("role", input.role);
-  const writing = readSingle("writing", input.writing);
-  const signals = readMulti("signals", input.signals ?? []);
-  const status = readMulti("status", input.status ?? []);
+  const progressive = readSingle("progressive", input.progressive);
+  const criteria = readMulti("criteria", input.criteria ?? []);
+  const merit = readSingle("merit", input.merit);
+  const positioned = readSingle("positioned", input.positioned);
+  const balance = readSingle("balance", input.balance);
 
-  if (!degree || !years || !compensation || !role || !writing || !signals || !status) {
+  if (!degree || !years || !progressive || !criteria || !merit || !positioned || !balance) {
     return null;
   }
 
-  return { degree, years, compensation, role, signals, status, writing };
+  return { degree, years, progressive, criteria, merit, positioned, balance };
 }
 
 export function intakeFields(answers: QuizAnswers): { name: string; value: string }[] {
   return [
     { name: answerFieldNames.degree, value: answers.degree },
     { name: answerFieldNames.years, value: answers.years },
-    { name: answerFieldNames.compensation, value: answers.compensation },
-    { name: answerFieldNames.role, value: answers.role },
-    ...answers.signals.map((value) => ({ name: answerFieldNames.signals, value })),
-    ...answers.status.map((value) => ({ name: answerFieldNames.status, value })),
-    { name: answerFieldNames.writing, value: answers.writing },
+    { name: answerFieldNames.progressive, value: answers.progressive },
+    ...answers.criteria.map((value) => ({ name: answerFieldNames.criteria, value })),
+    { name: answerFieldNames.merit, value: answers.merit },
+    { name: answerFieldNames.positioned, value: answers.positioned },
+    { name: answerFieldNames.balance, value: answers.balance },
   ];
 }
 
@@ -294,11 +290,11 @@ export function readIntake(formData: FormData):
   const raw: DraftAnswers = {
     degree: readSingle("degree", formData.get(answerFieldNames.degree)) ?? undefined,
     years: readSingle("years", formData.get(answerFieldNames.years)) ?? undefined,
-    compensation: readSingle("compensation", formData.get(answerFieldNames.compensation)) ?? undefined,
-    role: readSingle("role", formData.get(answerFieldNames.role)) ?? undefined,
-    writing: readSingle("writing", formData.get(answerFieldNames.writing)) ?? undefined,
-    signals: readMulti("signals", formStrings(formData, answerFieldNames.signals)) ?? undefined,
-    status: readMulti("status", formStrings(formData, answerFieldNames.status)) ?? undefined,
+    progressive: readSingle("progressive", formData.get(answerFieldNames.progressive)) ?? undefined,
+    criteria: readMulti("criteria", formStrings(formData, answerFieldNames.criteria)) ?? undefined,
+    merit: readSingle("merit", formData.get(answerFieldNames.merit)) ?? undefined,
+    positioned: readSingle("positioned", formData.get(answerFieldNames.positioned)) ?? undefined,
+    balance: readSingle("balance", formData.get(answerFieldNames.balance)) ?? undefined,
   };
 
   const answers = toQuizAnswers(raw);
