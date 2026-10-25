@@ -13,12 +13,12 @@ export const quizSteps = [
   {
     key: "years",
     kind: "single",
-    question: "How many years have you worked in your field?",
+    question: "How many years of experience do you have in your field?",
     options: [
-      { value: "under_5", label: "Fewer than 5 years" },
-      { value: "five_to_ten", label: "5 to 10 years" },
-      { value: "ten_to_fifteen", label: "10 to 15 years" },
-      { value: "fifteen_plus", label: "15 years or more" },
+      { value: "under_2", label: "Less than 2 years" },
+      { value: "two_to_four", label: "2-4 years" },
+      { value: "five_to_nine", label: "5-9 years" },
+      { value: "ten_plus", label: "10+ years" },
     ],
   },
   {
@@ -176,9 +176,11 @@ function readMulti<K extends MultiKey>(key: K, values: readonly string[]): QuizA
  * Profile signals carry the result. Zero or one signal is a stretch, even
  * with a doctorate, because the useful next step is an independent attorney.
  * Three or more signals are strong. Two signals are strong only when degree,
- * years, pay, and role add up. Strong signals plus confidence and no prior
- * denial suggest DIY. Anything else with enough signals suggests DIY +
- * Attorney Review. This is not a finding on eligibility.
+ * years, pay, and role add up. A bachelor's degree plus 5 or more years is
+ * treated like a master's for that structure score, the usual advanced-degree
+ * equivalent. It is still a product suggestion, not a finding that the person
+ * qualifies. Strong signals plus confidence and no prior denial suggest DIY.
+ * Anything else with enough signals suggests DIY + Attorney Review.
  */
 export function recommendPlan(answers: QuizAnswers): PlanSuggestion {
   const count = answers.signals.includes("none") ? 0 : answers.signals.length;
@@ -186,11 +188,15 @@ export function recommendPlan(answers: QuizAnswers): PlanSuggestion {
     return "stretch";
   }
 
+  const advancedEquivalent =
+    answers.degree === "bachelor" &&
+    (answers.years === "five_to_nine" || answers.years === "ten_plus");
+
   let structure = 0;
   if (answers.degree === "phd") structure += 2;
-  else if (answers.degree === "master") structure += 1;
-  if (answers.years === "fifteen_plus") structure += 2;
-  else if (answers.years === "ten_to_fifteen") structure += 1;
+  else if (answers.degree === "master" || advancedEquivalent) structure += 1;
+  if (answers.years === "ten_plus") structure += 2;
+  else if (answers.years === "five_to_nine") structure += 1;
   if (answers.compensation === "200_plus") structure += 2;
   else if (answers.compensation === "120_200") structure += 1;
   if (answers.role === "principal") structure += 2;
