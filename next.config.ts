@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
       { source: "/quiz", destination: "/fit", permanent: false },
       { source: "/start", destination: "/fit", permanent: false },
       { source: "/eligibility", destination: "/fit", permanent: false },
-      { source: "/dashboard/eligibility", destination: "/dashboard/fit", permanent: false },
+      { source: "/dashboard/eligibility", destination: "/dashboard", permanent: false },
+      { source: "/dashboard/fit", destination: "/dashboard", permanent: false },
       { source: "/services", destination: "/pricing", permanent: false },
     ];
   },

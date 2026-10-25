@@ -16,7 +16,6 @@ export type Workspace = {
   plan: PlanId | null;
   planStatus: string | null;
   premium: boolean;
-  eligibilitySaved: boolean;
   documents: WorkspaceDocument[];
   loadError: string | null;
 };
@@ -31,7 +30,6 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
       plan: null,
       planStatus: null,
       premium: false,
-      eligibilitySaved: false,
       documents: [],
       loadError: null,
     };
@@ -43,14 +41,13 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
     redirect("/login?next=/dashboard");
   }
 
-  const [planResult, eligibilityResult, documentResult] = await Promise.all([
+  const [planResult, documentResult] = await Promise.all([
     supabase
       .from("plan_selections")
       .select("plan, status")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(1),
-    supabase.from("eligibility_responses").select("id").eq("user_id", user.id).limit(1),
     supabase
       .from("documents")
       .select("id, file_name, created_at")
@@ -59,7 +56,7 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
   ]);
 
   const loadError =
-    planResult.error || eligibilityResult.error || documentResult.error
+    planResult.error || documentResult.error
       ? "Some workspace data is not available yet. Apply the Supabase migrations, then refresh."
       : null;
 
@@ -73,7 +70,6 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
     plan,
     planStatus: typeof latest?.status === "string" ? latest.status : null,
     premium: premiumUnlocked(plan),
-    eligibilitySaved: (eligibilityResult.data?.length ?? 0) > 0,
     documents: (documentResult.data ?? []).flatMap((row) => {
       if (typeof row.id !== "string" || typeof row.file_name !== "string") {
         return [];

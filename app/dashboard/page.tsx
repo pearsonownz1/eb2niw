@@ -18,11 +18,6 @@ export default async function OverviewPage() {
 
   const rows = [
     {
-      title: "Your fit",
-      status: workspace.eligibilitySaved ? "Fit check saved" : "Not started",
-      href: "/dashboard/fit",
-    },
-    {
       title: "Plan",
       status: plan ? `${planLabel} · ${statusLabel}` : "Not started",
       href: "/get-started",
