@@ -12,24 +12,16 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-raised/95 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-4 px-5 py-3 sm:px-8">
-        <Link
-          href="/"
-          className="flex items-center gap-3 rounded-sm"
-          onClick={() => setOpen(false)}
-        >
+        <Link href="/" className="flex items-center gap-3 rounded-sm" onClick={() => setOpen(false)}>
           <span
             aria-hidden="true"
             className="grid h-10 w-10 place-items-center rounded-md bg-navy font-serif text-sm text-paper"
           >
-            NIW
+            EB2
           </span>
           <span>
-            <span className="block font-serif text-xl leading-none text-navy">
-              EB-2 NIW
-            </span>
-            <span className="mt-1 block text-xs text-muted">
-              by GEO Credential Services
-            </span>
+            <span className="block font-serif text-xl leading-none text-navy">EB2NIW</span>
+            <span className="mt-1 block text-xs text-muted">Guided EB-2 NIW filing</span>
           </span>
         </Link>
         <button
@@ -44,10 +36,10 @@ export function SiteHeader() {
         <nav
           id="site-nav"
           aria-label="Primary"
-          className={`${open ? "grid" : "hidden"} w-full gap-1 border-t border-line py-3 md:flex md:w-auto md:items-center md:gap-1 md:border-0 md:py-0`}
+          className={`${open ? "grid" : "hidden"} w-full items-center gap-1 border-t border-line py-3 md:flex md:w-auto md:border-0 md:py-0`}
         >
           {nav.map((item) => {
-            const active = pathname === item.href;
+            const active = item.href === "/pricing" ? pathname === "/pricing" : pathname === item.href;
             return (
               <Link
                 key={item.href}
@@ -55,15 +47,20 @@ export function SiteHeader() {
                 aria-current={active ? "page" : undefined}
                 onClick={() => setOpen(false)}
                 className={`rounded-md px-3 py-3 text-sm font-semibold md:py-2 ${
-                  active
-                    ? "bg-brass-soft text-navy"
-                    : "text-muted hover:bg-paper hover:text-navy"
+                  active ? "bg-brass-soft text-navy" : "text-muted hover:bg-paper hover:text-navy"
                 }`}
               >
                 {item.label}
               </Link>
             );
           })}
+          <Link
+            href="/start"
+            onClick={() => setOpen(false)}
+            className="mt-2 inline-flex items-center justify-center rounded-md bg-navy px-4 py-3 text-sm font-semibold text-paper md:mt-0 md:ml-2 md:py-2"
+          >
+            Start your petition
+          </Link>
         </nav>
       </div>
     </header>

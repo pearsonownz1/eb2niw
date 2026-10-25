@@ -1,8 +1,8 @@
 # eb2niw.com
 
-Placeholder site for people preparing their own EB-2 National Interest Waiver petitions. A project of [GEO Credential Services](https://gcs.org).
+Guided software for people preparing their own EB-2 National Interest Waiver petition. The brand is EB2NIW.
 
-Not a law firm; information only, not legal advice.
+EB2NIW is not a law firm, and attorney review is provided by independent attorneys.
 
 ## Develop
 
@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-The app builds and runs without Supabase environment variables. The email signup then shows a configuration error.
+The app builds and runs without Supabase environment variables. The fit check still shows a recommendation, then says the answers could not be stored.
 
 ## Supabase
 
@@ -22,4 +22,4 @@ Copy `.env.example` to `.env.local` and set:
 
 Do not commit real keys.
 
-Apply `supabase/migrations/*_create_waitlist.sql` before collecting signups. The `waitlist` table allows anonymous inserts only. The signup client does not request the inserted row back, because there is no select policy.
+Apply the SQL files in `supabase/migrations` before collecting answers. `intake` stores the fit check from the home page and `/start`: the eight answers, the plan suggestion, and the name, email, optional phone, and marketing consent from the result screen. `waitlist` is a separate email-only table. Both allow anonymous inserts only. The clients do not request inserted rows back, because there is no select policy.
