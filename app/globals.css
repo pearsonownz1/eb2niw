@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f4efe6;
+  --paper: #f3f2ee;
   --raised: #fffcf7;
   --ink: #1b2430;
+  --near: #1a1916;
   --muted: #3e4c5f;
-  --line: #e3d8c8;
+  --line: #e4d8c4;
   --navy: #17324f;
   --navy-deep: #102538;
   --brass: #6f4a22;
   --brass-soft: #f3e4d2;
+  --gold: #f2b84b;
   --good: #1d5c40;
   --danger: #8d2f2f;
 }
@@ -18,12 +20,14 @@
   --color-paper: var(--paper);
   --color-raised: var(--raised);
   --color-ink: var(--ink);
+  --color-near: var(--near);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-navy: var(--navy);
   --color-navy-deep: var(--navy-deep);
   --color-brass: var(--brass);
   --color-brass-soft: var(--brass-soft);
+  --color-gold: var(--gold);
   --color-good: var(--good);
   --color-danger: var(--danger);
   --font-sans: var(--font-source-sans);
@@ -47,4 +51,11 @@ body {
 
 section[id] {
   scroll-margin-top: 6rem;
+}
+
+.quiz-page .quiz-heading {
+  font-size: clamp(2.35rem, 6vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--near);
 }

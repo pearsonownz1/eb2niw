@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Newsreader, Source_Sans_3 } from "next/font/google";
-import { NotLegalAdvice } from "@/components/not-legal-advice";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -20,17 +17,17 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL("https://eb2niw.com"),
   title: {
-    default: "EB-2 NIW — resources for people filing their own petition",
-    template: "%s · EB-2 NIW",
+    default: "EB2NIW — start your EB‑2 NIW petition",
+    template: "%s · EB2NIW",
   },
   description:
-    "Placeholder resource for people preparing their own EB-2 National Interest Waiver petitions. A project of GEO Credential Services. Not a law firm.",
+    "Guided software for people preparing their own EB‑2 National Interest Waiver petition. EB2NIW is not a law firm.",
   openGraph: {
-    title: "EB-2 NIW",
+    title: "EB2NIW",
     description:
-      "A placeholder resource for people preparing their own EB-2 National Interest Waiver petitions.",
+      "Guided software for an EB‑2 National Interest Waiver petition. Two plans, prices are placeholders.",
     url: "https://eb2niw.com",
-    siteName: "EB-2 NIW",
+    siteName: "EB2NIW",
     type: "website",
   },
 };
@@ -48,18 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <div className="bg-brass-soft px-5 py-2 text-center text-sm text-ink">
-          Placeholder launch. The quiz, guides, and checkout on this site are
-          not live yet.
-        </div>
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-          <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8">
-            <NotLegalAdvice />
-          </div>
-        </main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

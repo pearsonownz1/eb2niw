@@ -1,9 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  async redirects() {
+    return [
+      { source: "/guide", destination: "/resources", permanent: false },
+      { source: "/quiz", destination: "/fit", permanent: false },
+      { source: "/start", destination: "/fit", permanent: false },
+      { source: "/eligibility", destination: "/fit", permanent: false },
+      { source: "/dashboard/eligibility", destination: "/dashboard", permanent: false },
+      { source: "/dashboard/fit", destination: "/dashboard", permanent: false },
+      { source: "/services", destination: "/pricing", permanent: false },
+    ];
+  },
   turbopack: {
     rules: {
       "*.css": {

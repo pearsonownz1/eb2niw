@@ -4,7 +4,15 @@ import { useActionState, useId } from "react";
 import { joinWaitlist } from "@/app/actions/waitlist";
 import { idleWaitlistState } from "@/lib/waitlist";
 
-export function EmailSignup({ tone = "dark" }: { tone?: "dark" | "light" }) {
+export function EmailSignup({
+  tone = "dark",
+  note = "The guided software is not open yet. This saves your email so we can write when you can start a petition.",
+  buttonLabel = "Join the waitlist",
+}: {
+  tone?: "dark" | "light";
+  note?: string;
+  buttonLabel?: string;
+}) {
   const [state, action, pending] = useActionState(joinWaitlist, idleWaitlistState);
   const emailId = useId();
   const statusId = useId();
@@ -45,12 +53,11 @@ export function EmailSignup({ tone = "dark" }: { tone?: "dark" | "light" }) {
             onDark ? "bg-paper text-navy" : "bg-navy text-paper"
           }`}
         >
-          {pending ? "Saving" : "Join the list"}
+          {pending ? "Saving" : buttonLabel}
         </button>
       </div>
       <p className={`text-sm leading-relaxed ${onDark ? "text-paper/75" : "text-muted"}`}>
-        Placeholder list. No newsletter is being sent yet. The form stores an
-        email address only when Supabase is configured.
+        {note}
       </p>
       {state.message ? (
         <p
