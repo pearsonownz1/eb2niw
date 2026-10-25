@@ -144,10 +144,10 @@ export function NiwFitQuiz({ variant = "card" }: { variant?: "card" | "page" }) 
       <div
         className="h-1 bg-line"
         role="progressbar"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={percent}
-        aria-label="Fit check progress"
+        aria-valuemin={1}
+        aria-valuemax={questionCount}
+        aria-valuenow={Math.min(stepIndex + 1, questionCount)}
+        aria-label={`Question ${Math.min(stepIndex + 1, questionCount)} of ${questionCount}`}
       >
         <div
           className="h-full bg-navy transition-[width] duration-300 motion-reduce:transition-none"
@@ -155,6 +155,11 @@ export function NiwFitQuiz({ variant = "card" }: { variant?: "card" | "page" }) 
         />
       </div>
       <div className="p-6 sm:p-8">
+        {onResult ? null : (
+          <p className="mb-4 text-xs font-semibold tracking-[0.14em] text-muted">
+            {stepIndex + 1} of {questionCount}
+          </p>
+        )}
         {onResult && completed ? (
           <ResultScreen
             key={formGeneration}

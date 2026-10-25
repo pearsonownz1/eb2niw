@@ -44,7 +44,6 @@ export async function submitIntake(
       email: parsed.email,
       phone: parsed.phone,
       marketing_consent: parsed.marketingConsent,
-      pathway: parsed.answers.pathway,
       degree: parsed.answers.degree,
       years_experience: parsed.answers.years,
       compensation: parsed.answers.compensation,

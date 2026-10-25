@@ -1,14 +1,5 @@
 export const quizSteps = [
   {
-    key: "pathway",
-    kind: "single",
-    question: "Which path are you considering?",
-    options: [
-      { value: "niw", label: "An EB‑2 National Interest Waiver" },
-      { value: "not_sure", label: "I am not sure yet" },
-    ],
-  },
-  {
     key: "degree",
     kind: "single",
     question: "What is your highest completed degree?",
@@ -122,7 +113,6 @@ export type DraftAnswers = {
 };
 
 export const answerFieldNames: Record<QuizStepKey, string> = {
-  pathway: "pathway",
   degree: "degree",
   years: "years_experience",
   compensation: "compensation",
@@ -182,13 +172,13 @@ function readMulti<K extends MultiKey>(key: K, values: readonly string[]): QuizA
 }
 
 /**
- * Suggests a product plan from the eight answers.
+ * Suggests a product plan from the seven answers. The petition path is EB-2 NIW.
  * Profile signals carry the result. Zero or one signal is a stretch, even
  * with a doctorate, because the useful next step is an independent attorney.
  * Three or more signals are strong. Two signals are strong only when degree,
- * years, pay, and role add up. Strong signals plus confidence, a chosen NIW
- * path, and no prior denial suggest DIY. Anything else with enough signals
- * suggests DIY + Attorney Review. This is not a finding on eligibility.
+ * years, pay, and role add up. Strong signals plus confidence and no prior
+ * denial suggest DIY. Anything else with enough signals suggests DIY +
+ * Attorney Review. This is not a finding on eligibility.
  */
 export function recommendPlan(answers: QuizAnswers): PlanSuggestion {
   const count = answers.signals.includes("none") ? 0 : answers.signals.length;
@@ -208,12 +198,7 @@ export function recommendPlan(answers: QuizAnswers): PlanSuggestion {
 
   const strong = count >= 3 || structure >= 3;
   const priorDenial = answers.status.includes("prior_denial");
-  if (
-    strong &&
-    answers.writing === "confident" &&
-    answers.pathway === "niw" &&
-    !priorDenial
-  ) {
+  if (strong && answers.writing === "confident" && !priorDenial) {
     return "diy";
   }
 
@@ -244,7 +229,6 @@ export function recommendationCopy(answers: QuizAnswers): { title: string; body:
 }
 
 export function toQuizAnswers(input: DraftAnswers): QuizAnswers | null {
-  const pathway = readSingle("pathway", input.pathway);
   const degree = readSingle("degree", input.degree);
   const years = readSingle("years", input.years);
   const compensation = readSingle("compensation", input.compensation);
@@ -253,16 +237,15 @@ export function toQuizAnswers(input: DraftAnswers): QuizAnswers | null {
   const signals = readMulti("signals", input.signals ?? []);
   const status = readMulti("status", input.status ?? []);
 
-  if (!pathway || !degree || !years || !compensation || !role || !writing || !signals || !status) {
+  if (!degree || !years || !compensation || !role || !writing || !signals || !status) {
     return null;
   }
 
-  return { pathway, degree, years, compensation, role, signals, status, writing };
+  return { degree, years, compensation, role, signals, status, writing };
 }
 
 export function intakeFields(answers: QuizAnswers): { name: string; value: string }[] {
   return [
-    { name: answerFieldNames.pathway, value: answers.pathway },
     { name: answerFieldNames.degree, value: answers.degree },
     { name: answerFieldNames.years, value: answers.years },
     { name: answerFieldNames.compensation, value: answers.compensation },
@@ -303,7 +286,6 @@ export function readIntake(formData: FormData):
     }
   | { ok: false; message: string } {
   const raw: DraftAnswers = {
-    pathway: readSingle("pathway", formData.get(answerFieldNames.pathway)) ?? undefined,
     degree: readSingle("degree", formData.get(answerFieldNames.degree)) ?? undefined,
     years: readSingle("years", formData.get(answerFieldNames.years)) ?? undefined,
     compensation: readSingle("compensation", formData.get(answerFieldNames.compensation)) ?? undefined,

@@ -49,7 +49,6 @@ export async function recordPendingPlan(
     if (draft) {
       const { error: eligibilityError } = await supabase.from("eligibility_responses").insert({
         user_id: user.id,
-        pathway: draft.answers.pathway,
         degree: draft.answers.degree,
         years_experience: draft.answers.years,
         compensation: draft.answers.compensation,
