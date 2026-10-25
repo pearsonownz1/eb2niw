@@ -12,6 +12,7 @@ export type WorkspaceDocument = {
 export type Workspace = {
   configured: boolean;
   email: string | null;
+  fullName: string | null;
   userId: string | null;
   plan: PlanId | null;
   planStatus: string | null;
@@ -26,6 +27,7 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
     return {
       configured: false,
       email: null,
+      fullName: null,
       userId: null,
       plan: null,
       planStatus: null,
@@ -41,7 +43,7 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
     redirect("/login?next=/dashboard");
   }
 
-  const [planResult, documentResult] = await Promise.all([
+  const [planResult, documentResult, profileResult] = await Promise.all([
     supabase
       .from("plan_selections")
       .select("plan, status")
@@ -53,6 +55,7 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
       .select("id, file_name, created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false }),
+    supabase.from("profiles").select("full_name").eq("id", user.id).maybeSingle(),
   ]);
 
   const loadError =
@@ -66,6 +69,7 @@ export const getWorkspace = cache(async function getWorkspace(): Promise<Workspa
   return {
     configured: true,
     email: user.email ?? null,
+    fullName: typeof profileResult.data?.full_name === "string" ? profileResult.data.full_name : null,
     userId: user.id,
     plan,
     planStatus: typeof latest?.status === "string" ? latest.status : null,
