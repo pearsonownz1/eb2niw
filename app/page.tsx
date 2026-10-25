@@ -19,10 +19,11 @@ export default function HomePage() {
           A plain-language resource for the EB-2 National Interest Waiver.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">
-          eb2niw.com is a placeholder site from GEO Credential Services. It will
-          help you understand the Dhanasar test and see what a self-filed
-          petition usually involves. It is not a law firm, and it does not
-          decide whether you qualify.
+          EB2NIW is a standalone placeholder site for people preparing their
+          own EB-2 National Interest Waiver petitions. It will help you
+          understand the Dhanasar test and see what a self-filed petition
+          usually involves. It is not a law firm, and it does not decide
+          whether you qualify.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
@@ -82,9 +83,9 @@ export default function HomePage() {
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
             A ladder from free reading to a paid guide, a petition review, and
-            document services from GEO Credential Services. Only the guide has
-            a planned price ($99). Checkout on this site is not open. GCS
-            services are ordered on gcs.org.
+            related document services. Only the guide has a planned price
+            ($99). Checkout on this site is not open, and no provider is named
+            for the document services.
           </p>
         </div>
         <ol className="mt-10 divide-y divide-line overflow-hidden rounded-xl border border-line bg-raised">

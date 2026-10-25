@@ -1,5 +1,4 @@
-export const gcsUrl = "https://gcs.org";
-export const gcsEmail = "support@gcs.org";
+export const brand = "EB2NIW";
 
 export const disclaimer =
   "Not a law firm; information only, not legal advice.";
@@ -62,11 +61,11 @@ export const offers = [
   {
     step: "04",
     name: "Letters, evaluations, and translations",
-    price: "Through GCS",
-    status: "Order on gcs.org",
-    href: "/services#gcs",
-    linkLabel: "How GCS fits in",
-    body: "Expert opinion letters, credential evaluations, and translations are services of GEO Credential Services. This site does not take those orders.",
+    price: "Price not set",
+    status: "Coming soon",
+    href: "/services#letters",
+    linkLabel: "See the placeholders",
+    body: "Expert opinion letters, credential evaluations, and translations are planned. No provider is named, and there is no way to order them yet.",
   },
 ] as const;
 
@@ -105,7 +104,7 @@ export const articles = [
   {
     title: "Credential evaluations and translations",
     summary:
-      "Where GEO Credential Services fits when a record needs an evaluation or a certified translation. Not written yet.",
+      "How an evaluation or a certified translation can fit into a petition record. Not written yet.",
   },
   {
     title: "How this site differs from a law firm",

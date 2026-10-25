@@ -21,14 +21,14 @@ export function SiteHeader() {
             aria-hidden="true"
             className="grid h-10 w-10 place-items-center rounded-md bg-navy font-serif text-sm text-paper"
           >
-            NIW
+            EB2
           </span>
           <span>
             <span className="block font-serif text-xl leading-none text-navy">
-              EB-2 NIW
+              EB2NIW
             </span>
             <span className="mt-1 block text-xs text-muted">
-              by GEO Credential Services
+              DIY petition resources
             </span>
           </span>
         </Link>

@@ -1,6 +1,6 @@
 # eb2niw.com
 
-Placeholder site for people preparing their own EB-2 National Interest Waiver petitions. A project of [GEO Credential Services](https://gcs.org).
+Standalone placeholder site for people preparing their own EB-2 National Interest Waiver petitions. The brand is EB2NIW.
 
 Not a law firm; information only, not legal advice.
 
