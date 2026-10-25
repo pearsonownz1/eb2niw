@@ -2,7 +2,7 @@ export const quizSteps = [
   {
     key: "degree",
     kind: "single",
-    section: "ADVANCED DEGREE",
+    section: "YOUR BACKGROUND",
     question: "What is your highest completed degree?",
     options: [
       { value: "bachelor", label: "Bachelor's degree, from the U.S. or a foreign equivalent" },
@@ -14,7 +14,7 @@ export const quizSteps = [
   {
     key: "years",
     kind: "single",
-    section: "ADVANCED DEGREE",
+    section: "YOUR BACKGROUND",
     question: "How many years of experience do you have in your field?",
     options: [
       { value: "under_2", label: "Less than 2 years" },
@@ -26,26 +26,26 @@ export const quizSteps = [
   {
     key: "progressive",
     kind: "single",
-    section: "ADVANCED DEGREE",
-    question: "Were at least 5 years of that work progressive, and after your bachelor's degree?",
+    section: "YOUR BACKGROUND",
+    question: "Thinking about work after a bachelor's degree, which of these is closer?",
     options: [
-      { value: "yes", label: "Yes. At least 5 years came after the degree and grew in responsibility in the specialty" },
-      { value: "no", label: "No, or not 5 years after the degree" },
-      { value: "not_applicable", label: "Not applicable. My highest degree is already above a bachelor's" },
+      { value: "yes", label: "At least 5 years came after the degree and grew in responsibility in the specialty" },
+      { value: "no", label: "That does not describe my experience" },
+      { value: "not_applicable", label: "My highest degree is already above a bachelor's" },
     ],
   },
   {
     key: "criteria",
     kind: "multi",
-    section: "EXCEPTIONAL ABILITY",
-    question: "Which exceptional-ability criteria can you document?",
-    hint: "Select every one that applies. At least three is the usual threshold.",
+    section: "YOUR BACKGROUND",
+    question: "Which of these describe your background?",
+    hint: "Select every one that applies.",
     exclusive: "none",
     options: [
       { value: "academic_record", label: "An official academic record of a degree, diploma, or certificate in your field" },
       { value: "ten_year_letters", label: "Employer letters showing at least 10 years of full-time experience in the occupation" },
       { value: "license", label: "A license or certification for your profession" },
-      { value: "salary", label: "Pay or other compensation that shows a high level of ability" },
+      { value: "salary", label: "Pay or other compensation that stands out in your field" },
       { value: "membership", label: "Membership in a professional association" },
       { value: "recognition", label: "Recognition of your achievements by peers, a government, or a professional or business organization" },
       { value: "none", label: "None of these" },
@@ -54,34 +54,34 @@ export const quizSteps = [
   {
     key: "merit",
     kind: "single",
-    section: "NATIONAL INTEREST WAIVER",
-    question: "Does the endeavor you propose have substantial merit and national importance?",
+    section: "YOUR ENDEAVOR",
+    question: "How would you describe the endeavor you have in mind?",
     options: [
-      { value: "yes", label: "Yes. It matters beyond one employer, such as for a field, a region, or the public" },
-      { value: "partly", label: "Partly. The broader importance is still unclear" },
-      { value: "not_yet", label: "Not yet" },
+      { value: "yes", label: "It has real substance, and it matters beyond one employer" },
+      { value: "partly", label: "The broader importance is still unclear to me" },
+      { value: "not_yet", label: "I have not shaped the endeavor yet" },
     ],
   },
   {
     key: "positioned",
     kind: "single",
-    section: "NATIONAL INTEREST WAIVER",
-    question: "Are you well positioned to advance that endeavor?",
+    section: "YOUR ENDEAVOR",
+    question: "How prepared do you feel to carry that endeavor forward?",
     options: [
-      { value: "yes", label: "Yes. My education, record, and plan line up with the endeavor" },
-      { value: "partly", label: "Partly. Some of that record is still thin" },
-      { value: "not_yet", label: "Not yet" },
+      { value: "yes", label: "My education, record, and plan feel aligned with it" },
+      { value: "partly", label: "Some of that record still feels thin" },
+      { value: "not_yet", label: "I am not there yet" },
     ],
   },
   {
     key: "balance",
     kind: "single",
-    section: "NATIONAL INTEREST WAIVER",
-    question: "On balance, would it benefit the United States to waive the job offer and labor certification?",
+    section: "YOUR ENDEAVOR",
+    question: "How do you feel about moving ahead without an employer sponsor?",
     options: [
-      { value: "yes", label: "Yes. A job offer would be impractical, or the work would help even if other workers are available" },
-      { value: "partly", label: "Partly. That balance is still unclear" },
-      { value: "not_yet", label: "Not yet" },
+      { value: "yes", label: "A job offer would be a poor fit, or the work could help even if other people do similar jobs" },
+      { value: "partly", label: "I am unsure about that balance" },
+      { value: "not_yet", label: "I have not thought this through yet" },
     ],
   },
 ] as const;
@@ -120,9 +120,9 @@ export const answerFieldNames: Record<QuizStepKey, string> = {
 export type PlanSuggestion = "diy" | "attorney_review" | "stretch";
 
 export const recommendationTitles: Record<PlanSuggestion, string> = {
-  diy: "DIY looks like a strong fit",
-  attorney_review: "DIY + Attorney Review recommended",
-  stretch: "NIW may be a stretch, an attorney consult is recommended",
+  diy: "Based on your answers, our DIY tools look like a good fit",
+  attorney_review: "You may want attorney review",
+  stretch: "You may want to talk with an attorney first",
 };
 
 export type IntakeState = {
@@ -181,13 +181,13 @@ function waiverProngsReady(answers: QuizAnswers): boolean {
 }
 
 /**
- * Suggests a product plan from the EB-2 rules. An advanced degree is a U.S.
- * master's or higher, or a foreign equivalent, or a bachelor's plus at least
- * 5 years of progressive post-degree experience. Exceptional ability is at
- * least three of the six criteria. The waiver also needs yes on all three
- * Dhanasar prongs. Missing the degree and the three criteria is a stretch.
- * A category basis without all three prongs suggests attorney review. A basis
- * plus all three prongs suggests DIY. This is not a finding that anyone qualifies.
+ * Suggests a product plan from the self-assessment. The same facts the EB-2
+ * category is built around — degree level, post-degree experience, the six
+ * background items, and the three endeavor questions — choose the plan.
+ * DIY when the background and the endeavor answers are all in the stronger
+ * set. Attorney review when the background is there and an endeavor answer
+ * is still partial. An attorney-first suggestion when the background answers
+ * are thin. Nothing here is a score or a decision for USCIS.
  */
 export function recommendPlan(answers: QuizAnswers): PlanSuggestion {
   const basis = categoryBasis(answers);
@@ -204,29 +204,22 @@ export function recommendationCopy(answers: QuizAnswers): { title: string; body:
   const plan = recommendPlan(answers);
 
   if (plan === "diy") {
-    const basis = categoryBasis(answers);
-    const basisText =
-      basis.advanced && basis.exceptional
-        ? "an advanced degree and at least three exceptional-ability criteria"
-        : basis.advanced
-          ? "an advanced degree (a master's or higher, or a bachelor's plus 5 years of progressive post-degree experience)"
-          : "at least three exceptional-ability criteria";
     return {
       title: recommendationTitles.diy,
-      body: `These answers line up with ${basisText}, and with yes on all three national-interest prongs. DIY is the plan to start with. You would use the questionnaire, the evidence checklist, and the petition letter builder. This is a suggestion about which product to use. It is not a finding that you qualify.`,
+      body: "Start with DIY. You would use the questionnaire, the evidence checklist, and the petition letter builder. Attorney review can be added later.",
     };
   }
 
   if (plan === "attorney_review") {
     return {
       title: recommendationTitles.attorney_review,
-      body: "These answers line up with an advanced degree or with at least three exceptional-ability criteria. At least one national-interest prong is only partly answered, or not yet. DIY + Attorney Review is the plan to start with. This is a suggestion about which product to use. It is not a finding that you qualify.",
+      body: "Start with DIY + Attorney Review. You would use the same guided software, with an independent attorney on the package.",
     };
   }
 
   return {
     title: recommendationTitles.stretch,
-    body: "These answers do not line up with a master's or higher, a bachelor's plus 5 years of progressive post-degree experience, or at least three exceptional-ability criteria. An independent immigration attorney can tell you whether an EB\u20112\u00A0NIW is worth preparing. EB2NIW does not make that call. This is not legal advice.",
+    body: "The Premium plan includes an attorney consultation and case strategy call. That is the plan to start with from these answers.",
   };
 }
 

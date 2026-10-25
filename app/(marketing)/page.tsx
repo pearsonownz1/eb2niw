@@ -17,15 +17,15 @@ export default function HomePage() {
             Start your {eb2niw} petition
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pretty text-muted">
-            Guided software for one category. Check whether DIY or DIY plus an independent attorney is the plan to start with, then open a workspace for the petition. The suggestion is about the product, not whether you qualify.
+            Guided software for one category. See whether DIY or DIY plus an independent attorney is the plan to start with, then open a workspace for the petition.
           </p>
           <div className="mt-8 flex max-w-md flex-col gap-3">
             <Link
-              href="/eligibility"
+              href="/fit"
               className="rounded-2xl border border-line bg-raised px-5 py-4 transition-colors hover:border-near/30"
             >
               <span className="block font-serif text-2xl leading-snug text-near">Is {eb2niw} right for me?</span>
-              <span className="mt-1 block text-sm font-semibold text-brass">Check your eligibility</span>
+              <span className="mt-1 block text-sm font-semibold text-brass">A short self-assessment</span>
             </Link>
             <Link
               href="/get-started"

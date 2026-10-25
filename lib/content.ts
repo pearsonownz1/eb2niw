@@ -8,6 +8,9 @@ export const eb2niw = "EB\u20112\u00A0NIW";
 export const disclaimer =
   "EB2NIW is not a law firm, and attorney review is provided by independent attorneys.";
 
+export const fitDisclaimer =
+  "This is not legal advice or an eligibility determination. EB2NIW is not a law firm. Only USCIS decides eligibility.";
+
 export const nav = [
   { href: "/pricing", label: "Pricing" },
   { href: "/pricing#how-it-works", label: "How it works" },
@@ -130,12 +133,12 @@ export const faqs = [
   {
     question: "Is this legal advice?",
     answer:
-      "No. EB2NIW is not a law firm, and attorney review is provided by independent attorneys. The questionnaire, checklist, and letter builder are tools for preparing your own petition. They do not tell you whether you qualify or whether you should file.",
+      "No. This is not legal advice or an eligibility determination. EB2NIW is not a law firm. Only USCIS decides eligibility. The questionnaire, checklist, and letter builder help you prepare your own petition.",
   },
   {
     question: "Can I start a petition today?",
     answer:
-      "Check your eligibility, then choose DIY or DIY + Attorney Review and create an account. Payment is not open yet. The prices on the plans page are placeholders.",
+      "Take the short fit check, then choose DIY or DIY + Attorney Review and create an account. Payment is not open yet. The prices on the plans page are placeholders.",
   },
 ] as const;
 

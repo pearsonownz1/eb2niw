@@ -1,5 +1,5 @@
 import { WorkspaceHeader } from "@/components/workspace-header";
-import { eb2niw } from "@/lib/content";
+import { eb2niw, fitDisclaimer } from "@/lib/content";
 
 const prongs = [
   {
@@ -16,23 +16,24 @@ const prongs = [
   },
 ] as const;
 
-export default function DashboardEligibilityPage() {
+export default function DashboardFitPage() {
   return (
     <>
       <WorkspaceHeader
-        title="Eligibility"
-        lede={`The three Dhanasar prongs, as requirements to work through for an ${eb2niw} petition. Each one is not started. This is a checklist, not a finding that you qualify.`}
+        title={`Is ${eb2niw} right for me?`}
+        lede="Notes for the three parts of a national-interest waiver, in your own words. Nothing here is sent to USCIS."
       />
       <ol className="grid gap-4 px-5 py-8 sm:px-8">
         {prongs.map((prong, index) => (
           <li key={prong.title} className="rounded-2xl border border-line bg-raised p-5">
-            <p className="text-xs font-semibold tracking-[0.14em] text-brass">PRONG {index + 1}</p>
+            <p className="text-xs font-semibold tracking-[0.14em] text-brass">PART {index + 1}</p>
             <h2 className="mt-2 font-serif text-2xl text-near">{prong.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted">{prong.body}</p>
             <p className="mt-4 text-sm font-semibold text-near">Not started</p>
           </li>
         ))}
       </ol>
+      <p className="px-5 pb-10 text-sm leading-relaxed text-muted sm:px-8">{fitDisclaimer}</p>
     </>
   );
 }

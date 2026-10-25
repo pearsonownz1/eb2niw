@@ -6,7 +6,7 @@ import { useId, useState } from "react";
 import { eb2niw, nav } from "@/lib/content";
 
 const searchLinks = [
-  { href: "/eligibility", label: "Check your eligibility" },
+  { href: "/fit", label: `Is ${eb2niw} right for me?` },
   { href: "/get-started", label: "Get started" },
   { href: "/pricing", label: "Pricing" },
   { href: "/resources", label: "Resources" },
@@ -126,7 +126,7 @@ export function SiteHeader() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 type="search"
-                placeholder="Eligibility, plans, resources"
+                placeholder="Fit check, plans, resources"
                 className="mt-2 w-full rounded-xl border border-line bg-raised px-4 py-3 text-base font-normal text-ink"
               />
             </label>

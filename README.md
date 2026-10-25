@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-The app builds and runs without Supabase environment variables. The eligibility questionnaire still shows a plan suggestion. Creating an account, saving a plan, or uploading a file then says Supabase is not configured.
+The app builds and runs without Supabase environment variables. The fit check still shows a plan suggestion. Creating an account, saving a plan, or uploading a file then says Supabase is not configured.
 
 ## Supabase
 

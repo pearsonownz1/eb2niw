@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type RefObject } from "react";
-import { disclaimer } from "@/lib/content";
+import { fitDisclaimer } from "@/lib/content";
 import { persistEligibility } from "@/lib/eligibility-draft";
 import {
   quizSteps,
@@ -400,13 +400,13 @@ function ResultScreen({
   return (
     <div>
       <p className="inline-flex rounded-full bg-brass-soft px-3 py-1 text-xs font-semibold tracking-[0.14em] text-brass">
-        RECOMMENDATION
+        YOUR FIT
       </p>
       <h2 ref={headingRef} id={titleId} tabIndex={-1} className={headingClass}>
         {copy.title}
       </h2>
       <p className="mt-4 text-base leading-relaxed text-muted">{copy.body}</p>
-      <p className="mt-4 text-sm leading-relaxed text-muted">{disclaimer}</p>
+      <p className="mt-4 text-sm leading-relaxed text-muted">{fitDisclaimer}</p>
       <div className="mt-8 rounded-2xl border border-line bg-paper p-5">
         <p className="text-xs font-semibold tracking-[0.14em] text-brass">SUGGESTED PLAN</p>
         <p className="mt-2 font-serif text-3xl text-near">

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/page-intro";
+import { eb2niw } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "EB2NIW does not publish a contact address yet. The eligibility check is a short questionnaire.",
+  description: "EB2NIW does not publish a contact address yet. A short self-assessment suggests which plan to start with.",
 };
 
 export default function ContactPage() {
@@ -17,10 +18,10 @@ export default function ContactPage() {
       />
       <p className="mt-8">
         <Link
-          href="/eligibility"
+          href="/fit"
           className="font-semibold text-navy underline decoration-brass underline-offset-4"
         >
-          Check your eligibility
+          Is {eb2niw} right for me?
         </Link>
       </p>
     </article>

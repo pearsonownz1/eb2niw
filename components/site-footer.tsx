@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { brand, disclaimer, nav, photoCredits } from "@/lib/content";
+import { brand, disclaimer, eb2niw, nav, photoCredits } from "@/lib/content";
 
 export function SiteFooter() {
   return (
@@ -38,8 +38,8 @@ export function SiteFooter() {
               {item.label}
             </Link>
           ))}
-          <Link href="/eligibility" className="rounded-sm py-1 text-paper/90 hover:text-paper">
-            Check your eligibility
+          <Link href="/fit" className="rounded-sm py-1 text-paper/90 hover:text-paper">
+            Is {eb2niw} right for me?
           </Link>
           <Link href="/get-started" className="rounded-sm py-1 text-paper/90 hover:text-paper">
             Get started

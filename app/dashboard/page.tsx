@@ -18,9 +18,9 @@ export default async function OverviewPage() {
 
   const rows = [
     {
-      title: "Eligibility check",
-      status: workspace.eligibilitySaved ? "Eligibility check saved" : "Not started",
-      href: "/dashboard/eligibility",
+      title: "Your fit",
+      status: workspace.eligibilitySaved ? "Fit check saved" : "Not started",
+      href: "/dashboard/fit",
     },
     {
       title: "Plan",
