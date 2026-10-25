@@ -20,17 +20,17 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL("https://eb2niw.com"),
   title: {
-    default: "EB-2 NIW — resources for people filing their own petition",
-    template: "%s · EB-2 NIW",
+    default: "EB2NIW — resources for people filing their own petition",
+    template: "%s · EB2NIW",
   },
   description:
-    "Placeholder resource for people preparing their own EB-2 National Interest Waiver petitions. A project of GEO Credential Services. Not a law firm.",
+    "Placeholder resource from EB2NIW for people preparing their own EB-2 National Interest Waiver petitions. Not a law firm.",
   openGraph: {
-    title: "EB-2 NIW",
+    title: "EB2NIW",
     description:
       "A placeholder resource for people preparing their own EB-2 National Interest Waiver petitions.",
     url: "https://eb2niw.com",
-    siteName: "EB-2 NIW",
+    siteName: "EB2NIW",
     type: "website",
   },
 };
