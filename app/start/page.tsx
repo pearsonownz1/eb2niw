@@ -5,7 +5,7 @@ import { PageIntro } from "@/components/page-intro";
 export const metadata: Metadata = {
   title: "Start your petition",
   description:
-    "Check your EB-2 NIW fit, see a plan suggestion, and save your contact details. The guided software is not open yet.",
+    "Check your EB‑2 NIW fit, see a plan suggestion, and save your contact details. The guided software is not open yet.",
 };
 
 export default function StartPage() {

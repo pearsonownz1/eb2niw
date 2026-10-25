@@ -5,7 +5,7 @@ import { articles } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Free EB-2 NIW reading from EB2NIW. These articles are not written yet, and they are not a paid guide.",
+    "Free EB‑2 NIW reading from EB2NIW. These articles are not written yet, and they are not a paid guide.",
 };
 
 export default function ResourcesPage() {

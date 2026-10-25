@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div>
           <p className="font-serif text-2xl">{brand}</p>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-paper/80">
-            Guided software for people preparing their own EB-2 National Interest Waiver petition. Two plans. The full flow is not open yet.
+            Guided software for people preparing their own EB‑2 National Interest Waiver petition. Two plans. The full flow is not open yet.
           </p>
           <p className="mt-4 text-xs leading-relaxed text-paper/70">
             Photos:{" "}

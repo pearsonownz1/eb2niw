@@ -21,7 +21,7 @@ export function SiteHeader() {
           </span>
           <span>
             <span className="block font-serif text-xl leading-none text-navy">EB2NIW</span>
-            <span className="mt-1 block text-xs text-muted">Guided EB-2 NIW filing</span>
+            <span className="mt-1 block text-xs text-muted">Guided EB‑2 NIW filing</span>
           </span>
         </Link>
         <button

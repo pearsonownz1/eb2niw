@@ -4,7 +4,7 @@ import { PageIntro } from "@/components/page-intro";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "EB2NIW is guided software for people preparing their own EB-2 National Interest Waiver petition.",
+    "EB2NIW is guided software for people preparing their own EB‑2 National Interest Waiver petition.",
 };
 
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="EB2NIW"
         title="About this product"
-        lede="EB2NIW is a standalone product for one visa category: the EB-2 National Interest Waiver. It is guided software for individuals who plan to prepare their own petition."
+        lede="EB2NIW is a standalone product for one visa category: the EB‑2 National Interest Waiver. It is guided software for individuals who plan to prepare their own petition."
       />
       <div className="mt-10 max-w-3xl space-y-6 text-base leading-relaxed text-muted">
         <p>

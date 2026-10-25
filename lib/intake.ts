@@ -4,7 +4,7 @@ export const quizSteps = [
     kind: "single",
     question: "Which path are you considering?",
     options: [
-      { value: "niw", label: "An EB-2 National Interest Waiver" },
+      { value: "niw", label: "An EB‑2 National Interest Waiver" },
       { value: "not_sure", label: "I am not sure yet" },
     ],
   },
@@ -239,7 +239,7 @@ export function recommendationCopy(answers: QuizAnswers): { title: string; body:
 
   return {
     title: recommendationTitles.stretch,
-    body: "These answers show few documented profile signals. An independent immigration attorney can tell you whether an EB-2 NIW is worth preparing. EB2NIW does not make that call. This is not legal advice.",
+    body: "These answers show few documented profile signals. An independent immigration attorney can tell you whether an EB‑2 NIW is worth preparing. EB2NIW does not make that call. This is not legal advice.",
   };
 }
 

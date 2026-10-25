@@ -1,6 +1,6 @@
 # eb2niw.com
 
-Guided software for people preparing their own EB-2 National Interest Waiver petition. The brand is EB2NIW.
+Guided software for people preparing their own EB‑2 National Interest Waiver petition. The brand is EB2NIW.
 
 EB2NIW is not a law firm, and attorney review is provided by independent attorneys.
 

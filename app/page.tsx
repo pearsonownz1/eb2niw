@@ -5,7 +5,7 @@ import { faqs, features, whyCards } from "@/lib/content";
 
 export const metadata: Metadata = {
   description:
-    "Start your EB-2 NIW petition with guided software. Two plans: DIY, or DIY plus review by an independent immigration attorney. Prices are TBD.",
+    "Start your EB‑2 NIW petition with guided software. Two plans: DIY, or DIY plus review by an independent immigration attorney. Prices are TBD.",
 };
 
 export default function HomePage() {
@@ -13,9 +13,9 @@ export default function HomePage() {
     <>
       <section className="mx-auto grid w-full max-w-6xl items-start gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-x-12 lg:gap-y-8">
         <div>
-          <p className="text-sm font-semibold text-brass">EB-2 National Interest Waiver</p>
+          <p className="text-sm font-semibold text-brass">EB‑2 National Interest Waiver</p>
           <h1 className="mt-3 font-serif text-4xl leading-[1.12] text-balance text-navy sm:text-6xl">
-            Start your EB-2 NIW petition
+            Start your EB‑2 NIW petition
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-pretty text-muted">
             EB2NIW is guided software for one category. Answer a short set of questions, one screen at a time. You will see whether DIY looks like a fit, whether attorney review is the better plan, or whether an attorney consult comes first. The full petition flow is not open yet.

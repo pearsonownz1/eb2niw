@@ -51,7 +51,7 @@ export const features = [
 export const whyCards = [
   {
     title: "No lawyer required to file",
-    body: "You may prepare and file an EB-2 NIW petition yourself. The software is the guide. An attorney is an option on the second plan, not a requirement to use the product.",
+    body: "You may prepare and file an EB‑2 NIW petition yourself. The software is the guide. An attorney is an option on the second plan, not a requirement to use the product.",
   },
   {
     title: "Self-petition, no employer sponsor",
@@ -105,7 +105,7 @@ export const faqs = [
   {
     question: "Do I need a job offer?",
     answer:
-      "No. An EB-2 National Interest Waiver is a self-petition. You do not need a job offer or a labor certification. You still have to address the three Dhanasar prongs for the endeavor you propose.",
+      "No. An EB‑2 National Interest Waiver is a self-petition. You do not need a job offer or a labor certification. You still have to address the three Dhanasar prongs for the endeavor you propose.",
   },
   {
     question: "What is the Dhanasar test?",
@@ -136,7 +136,7 @@ export const faqs = [
 
 export const articles = [
   {
-    title: "What the EB-2 NIW is",
+    title: "What the EB‑2 NIW is",
     summary:
       "A free orientation to the category and the waiver. Not written yet.",
   },
