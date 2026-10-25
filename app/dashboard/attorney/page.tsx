@@ -19,27 +19,29 @@ export default async function AttorneyPage() {
           lede="This part of the workspace is on the Premium plan. DIY includes the software. It does not include an attorney."
         />
         <div className="px-5 py-8 sm:px-8">
-          <section className="max-w-xl overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-700 via-violet-700 to-fuchsia-600 p-6 text-white shadow-sm">
-            <LockKeyhole className="h-8 w-8" aria-hidden="true" />
-            <p className="mt-4 text-xs font-semibold tracking-[0.14em] text-indigo-100">LOCKED</p>
-            <h2 className="mt-2 font-serif text-3xl">Upgrade to Premium</h2>
-            <p className="mt-3 text-sm leading-relaxed text-indigo-50">
+          <section className="max-w-xl rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50">
+              <LockKeyhole className="h-6 w-6 text-emerald-800" aria-hidden="true" />
+            </span>
+            <p className="mt-4 text-xs font-semibold tracking-[0.14em] text-emerald-800">LOCKED</p>
+            <h2 className="mt-2 font-serif text-3xl text-slate-950">Upgrade to Premium</h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               DIY + Attorney Review is {premium.priceLabel}, a placeholder price. Payment is not open yet.
             </p>
-            <ul className="mt-5 grid gap-2 text-sm text-white">
+            <ul className="mt-5 grid gap-2 text-sm text-slate-800">
               {premium.features.slice(1).map((feature) => (
-                <li key={feature} className="rounded-2xl bg-white/10 px-3 py-2">
+                <li key={feature} className="rounded-2xl bg-slate-50 px-3 py-2">
                   {feature}
                 </li>
               ))}
             </ul>
             <Link
               href="/get-started"
-              className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-violet-900 transition hover:bg-indigo-50"
+              className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-800 px-5 text-sm font-semibold text-white transition hover:bg-emerald-700"
             >
               See Premium
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-indigo-100">{disclaimer}</p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">{disclaimer}</p>
           </section>
         </div>
       </>

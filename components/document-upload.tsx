@@ -18,7 +18,7 @@ export function DocumentUpload() {
           type="file"
           required
           accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,application/pdf,image/png,image/jpeg"
-          className="mt-3 block w-full text-sm text-slate-600 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-900"
+          className="mt-3 block w-full text-sm text-slate-600 file:mr-4 file:rounded-full file:border-0 file:bg-slate-100 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-900"
         />
       </label>
       <p className="mt-3 text-sm text-slate-600">PDF, PNG, JPG, DOC, or DOCX. 10 MB maximum.</p>
@@ -30,7 +30,7 @@ export function DocumentUpload() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-5 text-sm font-semibold text-white transition hover:bg-violet-600 disabled:cursor-wait disabled:opacity-70"
+        className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70"
       >
         {pending ? "Uploading" : "Upload"}
       </button>

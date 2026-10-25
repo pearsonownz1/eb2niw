@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Check, LockKeyhole } from "lucide-react";
-import { disclaimer } from "@/lib/content";
+import { Check } from "lucide-react";
 import { plans } from "@/lib/plans";
 import { getWorkspace } from "@/lib/workspace";
 import { workspaceIcons } from "@/components/workspace-icons";
@@ -88,7 +87,7 @@ export default async function OverviewPage() {
         })}
       </ul>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_22rem]">
+      <div className={`mt-6 grid gap-4 ${workspace.premium ? "lg:grid-cols-[minmax(0,1fr)_22rem]" : ""}`}>
         <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
           <h2 className="font-serif text-2xl text-slate-950">Next steps</h2>
           <ol className="mt-4 grid gap-2">
@@ -112,7 +111,7 @@ export default async function OverviewPage() {
           </ol>
         </section>
         {workspace.premium ? (
-          <section className="rounded-3xl bg-gradient-to-br from-emerald-700 to-teal-600 p-6 text-white shadow-sm">
+          <section className="rounded-3xl bg-emerald-800 p-6 text-white shadow-sm">
             <ScaleNote />
             <h2 className="mt-4 font-serif text-3xl">Attorney Review is included</h2>
             <p className="mt-2 text-sm leading-relaxed text-emerald-50">
@@ -122,19 +121,7 @@ export default async function OverviewPage() {
               Open Attorney Review
             </Link>
           </section>
-        ) : (
-          <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-700 via-violet-700 to-fuchsia-600 p-6 text-white shadow-sm">
-            <LockKeyhole className="h-8 w-8 text-white" aria-hidden="true" />
-            <h2 className="mt-4 font-serif text-3xl">Attorney Review is locked</h2>
-            <p className="mt-2 text-sm leading-relaxed text-indigo-50">
-              DIY includes the software. Premium adds an independent attorney. The price is {plans.attorney_review.priceLabel}, a placeholder, and payment is not open yet.
-            </p>
-            <Link href="/get-started" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-white px-4 text-sm font-semibold text-violet-900">
-              See Premium
-            </Link>
-            <p className="mt-4 text-xs leading-relaxed text-indigo-100">{disclaimer}</p>
-          </section>
-        )}
+        ) : null}
       </div>
     </div>
   );
